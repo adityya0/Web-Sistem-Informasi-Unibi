@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
     searchInput.addEventListener('input', function () {
       const query = this.value.toLowerCase();
       document.querySelectorAll('.searchable-row').forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(query) › '' : 'none';
+        row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
       });
     });
   }
