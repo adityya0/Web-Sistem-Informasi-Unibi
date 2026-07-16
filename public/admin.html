@@ -11,7 +11,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Import Google Font (Poppins) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2›family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -868,8 +868,8 @@
           <td class="py-3.5 px-6"><span class="bg-primary/10 text-primary px-2.5 py-1 rounded-full text-[10px] font-bold uppercase">${e.category}</span></td>
           <td class="py-3.5 px-6">
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
-              e.status === 'Selesai' ? 'bg-gray-100 text-gray-600' :
-              e.status === 'Sedang Berlangsung' ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'
+              e.status === 'Selesai' › 'bg-gray-100 text-gray-600' :
+              e.status === 'Sedang Berlangsung' › 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'
             }">${e.status}</span>
           </td>
           <td class="py-3.5 px-6 text-right">
@@ -898,11 +898,11 @@
 
       if (id) {
         // Update edit mode
-        events = events.map(x => x.id == id ? { id: parseInt(id), title, date, time, location, category, status } : x);
+        events = events.map(x => x.id == id › { id: parseInt(id), title, date, time, location, category, status } : x);
         logActivity(`Mengubah event "${title}"`);
       } else {
         // Add new mode
-        const newId = events.length > 0 ? Math.max(...events.map(x => x.id)) + 1 : 1;
+        const newId = events.length > 0 › Math.max(...events.map(x => x.id)) + 1 : 1;
         events.push({ id: newId, title, date, time, location, category, status });
         logActivity(`Menambahkan event baru "${title}"`);
       }
@@ -930,7 +930,7 @@
     }
 
     function deleteEvent(id) {
-      if (confirm('Apakah Anda yakin ingin menghapus event ini?')) {
+      if (confirm('Apakah Anda yakin ingin menghapus event ini›')) {
         let events = getDB('events', defaultEvents);
         const item = events.find(x => x.id == id);
         events = events.filter(x => x.id != id);
@@ -967,7 +967,7 @@
           <td class="py-3.5 px-6 font-semibold text-gray-500 text-xs">${formatDate(n.date)}</td>
           <td class="py-3.5 px-6">
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
-              n.status === 'Publish' ? 'bg-green-50 text-green-600' : 'bg-yellow-50 text-yellow-600'
+              n.status === 'Publish' › 'bg-green-50 text-green-600' : 'bg-yellow-50 text-yellow-600'
             }">${n.status}</span>
           </td>
           <td class="py-3.5 px-6 text-right">
@@ -993,10 +993,10 @@
       let news = getDB('news', defaultNews);
 
       if (id) {
-        news = news.map(x => x.id == id ? { id: parseInt(id), title, category, date, status } : x);
+        news = news.map(x => x.id == id › { id: parseInt(id), title, category, date, status } : x);
         logActivity(`Mengubah berita "${title}"`);
       } else {
-        const newId = news.length > 0 ? Math.max(...news.map(x => x.id)) + 1 : 1;
+        const newId = news.length > 0 › Math.max(...news.map(x => x.id)) + 1 : 1;
         news.push({ id: newId, title, category, date, status });
         logActivity(`Menulis berita baru "${title}"`);
       }
@@ -1022,7 +1022,7 @@
     }
 
     function deleteNews(id) {
-      if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+      if (confirm('Apakah Anda yakin ingin menghapus berita ini›')) {
         let news = getDB('news', defaultNews);
         const item = news.find(x => x.id == id);
         news = news.filter(x => x.id != id);
@@ -1052,7 +1052,7 @@
           <td class="py-3.5 px-6"><div class="font-bold text-primary text-sm">${a.title}</div><div class="text-xs text-gray-500 font-medium leading-relaxed">${a.desc}</div></td>
           <td class="py-3.5 px-6 font-semibold text-gray-600 text-xs">${a.target}</td>
           <td class="py-3.5 px-6 font-semibold text-accent text-xs">${a.expiry}</td>
-          <td class="py-3.5 px-6"><span class="capitalize text-xs font-bold text-${a.color === 'orange' ? 'orange-600' : a.color === 'blue' ? 'blue-600' : 'green-600'}">${a.color}</span></td>
+          <td class="py-3.5 px-6"><span class="capitalize text-xs font-bold text-${a.color === 'orange' › 'orange-600' : a.color === 'blue' › 'blue-600' : 'green-600'}">${a.color}</span></td>
           <td class="py-3.5 px-6 text-right">
             <div class="flex items-center justify-end gap-2">
               <button onclick="editAnnouncement(${a.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit"><i class="fas fa-edit"></i></button>
@@ -1077,10 +1077,10 @@
       let anns = getDB('announcements', defaultAnnouncements);
 
       if (id) {
-        anns = anns.map(x => x.id == id ? { id: parseInt(id), title, desc, target, expiry, color } : x);
+        anns = anns.map(x => x.id == id › { id: parseInt(id), title, desc, target, expiry, color } : x);
         logActivity(`Mengubah pengumuman "${title}"`);
       } else {
-        const newId = anns.length > 0 ? Math.max(...anns.map(x => x.id)) + 1 : 1;
+        const newId = anns.length > 0 › Math.max(...anns.map(x => x.id)) + 1 : 1;
         anns.push({ id: newId, title, desc, target, expiry, color });
         logActivity(`Membuat pengumuman baru "${title}"`);
       }
@@ -1107,7 +1107,7 @@
     }
 
     function deleteAnnouncement(id) {
-      if (confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')) {
+      if (confirm('Apakah Anda yakin ingin menghapus pengumuman ini›')) {
         let anns = getDB('announcements', defaultAnnouncements);
         const item = anns.find(x => x.id == id);
         anns = anns.filter(x => x.id != id);
@@ -1161,10 +1161,10 @@
       let dls = getDB('downloads', defaultDownloads);
 
       if (id) {
-        dls = dls.map(x => x.id == id ? { id: parseInt(id), title, category, format, size } : x);
+        dls = dls.map(x => x.id == id › { id: parseInt(id), title, category, format, size } : x);
         logActivity(`Mengubah berkas "${title}"`);
       } else {
-        const newId = dls.length > 0 ? Math.max(...dls.map(x => x.id)) + 1 : 1;
+        const newId = dls.length > 0 › Math.max(...dls.map(x => x.id)) + 1 : 1;
         dls.push({ id: newId, title, category, format, size });
         logActivity(`Mengunggah berkas baru "${title}"`);
       }
@@ -1190,7 +1190,7 @@
     }
 
     function deleteDownload(id) {
-      if (confirm('Apakah Anda yakin ingin menghapus berkas ini?')) {
+      if (confirm('Apakah Anda yakin ingin menghapus berkas ini›')) {
         let dls = getDB('downloads', defaultDownloads);
         const item = dls.find(x => x.id == id);
         dls = dls.filter(x => x.id != id);
