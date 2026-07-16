@@ -1,4 +1,4 @@
-﻿/* ==========================================================
+/* ==========================================================
    SI FTI UNIBI — app.css
    Custom styles extending Tailwind CSS
    ========================================================== */
@@ -618,7 +618,7 @@ body {
 .footer-links { list-style: none; padding: 0; margin: 0; }
 .footer-links li { margin-bottom: 0.4rem; }
 .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 5px; }
-.footer-links a::before { content: '”º'; color: var(--accent); font-size: 1rem; line-height: 1; }
+.footer-links a::before { content: '\203a'; color: var(--accent); font-size: 1rem; line-height: 1; }
 .footer-links a:hover { color: var(--accent); padding-left: 4px; }
 
 .footer-social { display: flex; gap: 8px; margin-top: 1rem; }
