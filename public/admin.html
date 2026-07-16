@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel Admin Sistem Informasi FTI UNIBI - Kelola Event, Berita, Pengumuman, dan Unduhan.">
+  <title>Admin Dashboard | Prodi Sistem Informasi FTI UNIBI</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Import Google Font (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#192f59',
+            'primary-dark': '#0e1e3d',
+            'primary-light': '#2a4a8a',
+            accent: '#fda136',
+            'accent-dark': '#e88c20',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="w-64 bg-primary-dark text-white flex flex-col flex-shrink-0 z-30 transition-transform duration-300 transform md:translate-x-0 -translate-x-full fixed md:relative h-screen" id="sidebar">
+    <!-- Brand Info -->
+    <div class="p-5 border-b border-primary-light flex items-center gap-3">
+      <img src="images/logo.png" alt="UNIBI Logo" class="h-10 w-auto bg-white p-1 rounded-full">
+      <div>
+        <h1 class="font-bold text-sm leading-tight text-white">SI Admin Panel</h1>
+        <p class="text-xs text-gray-400">FTI UNIBI</p>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-1 p-4 space-y-1 overflow-y-auto custom-scrollbar">
+      <button onclick="switchTab('dashboard')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 text-left hover:bg-primary-light hover:text-white" id="btn-dashboard">
+        <i class="fas fa-chart-pie w-5"></i>
+        <span>Dashboard</span>
+      </button>
+
+      <button onclick="switchTab('events')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 text-left hover:bg-primary-light hover:text-white" id="btn-events">
+        <i class="fas fa-calendar-alt w-5"></i>
+        <span>Kelola Event</span>
+      </button>
+
+      <button onclick="switchTab('news')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 text-left hover:bg-primary-light hover:text-white" id="btn-news">
+        <i class="fas fa-newspaper w-5"></i>
+        <span>Kelola Berita</span>
+      </button>
+
+      <button onclick="switchTab('announcements')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 text-left hover:bg-primary-light hover:text-white" id="btn-announcements">
+        <i class="fas fa-bullhorn w-5"></i>
+        <span>Kelola Pengumuman</span>
+      </button>
+
+      <button onclick="switchTab('downloads')" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 text-left hover:bg-primary-light hover:text-white" id="btn-downloads">
+        <i class="fas fa-download w-5"></i>
+        <span>Kelola File Unduhan</span>
+      </button>
+
+      <div class="pt-4 border-t border-primary-light mt-4">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-red-900/40 hover:text-red-300 transition-all duration-200">
+          <i class="fas fa-external-link-alt w-5"></i>
+          <span>Lihat Website</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Admin Profile Summary Footer inside Sidebar -->
+    <div class="p-4 border-t border-primary-light bg-primary-dark flex items-center gap-3">
+      <div class="h-9 w-9 rounded-full bg-accent flex items-center justify-center font-bold text-white text-sm">
+        AD
+      </div>
+      <div class="overflow-hidden">
+        <h4 class="text-xs font-semibold text-white truncate">Administrator SI</h4>
+        <span class="text-[10px] text-accent font-medium uppercase">Super Admin</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="fixed inset-0 bg-black/40 z-20 hidden" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <div class="flex-1 flex flex-col min-h-screen overflow-x-hidden">
+    
+    <!-- Top Header -->
+    <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6 sticky top-0 z-10 shadow-sm">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSidebar()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-600 focus:outline-none" aria-label="Toggle Sidebar">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+        <h2 class="text-lg font-bold text-primary flex items-center gap-2" id="current-tab-title">
+          Dashboard
+        </h2>
+      </div>
+
+      <!-- Quick Actions / User Icon -->
+      <div class="flex items-center gap-4">
+        <!-- Date display -->
+        <span class="text-xs text-gray-500 font-medium hidden sm:inline-block bg-gray-100 px-3 py-1.5 rounded-full">
+          <i class="far fa-calendar-alt text-primary mr-1"></i> <span id="current-date-time">Kamis, 16 Juli 2026</span>
+        </span>
+
+        <!-- Notification bell (aesthetic only) -->
+        <div class="relative cursor-pointer hover:bg-gray-100 p-2 rounded-full text-gray-600 transition-colors">
+          <i class="far fa-bell text-lg"></i>
+          <span class="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+        </div>
+
+        <div class="h-8 w-px bg-gray-200"></div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-gray-700 hidden md:inline">Admin Sistem Informasi</span>
+          <div class="h-9 w-9 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-xs border-2 border-gray-200 shadow-sm">
+            ASI
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Tab Contents -->
+    <main class="flex-1 p-6 space-y-6">
+
+      <!-- ==================== TAB: DASHBOARD ==================== -->
+      <div id="tab-dashboard" class="tab-content hidden space-y-6">
+        <!-- Stats Widgets -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Card 1 -->
+          <div onclick="switchTab('events')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex items-center justify-between cursor-pointer hover:shadow-md hover:border-accent transition-all duration-300">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Event</span>
+              <h3 class="text-2xl font-extrabold text-primary" id="dash-total-events">0</h3>
+            </div>
+            <div class="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div onclick="switchTab('news')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex items-center justify-between cursor-pointer hover:shadow-md hover:border-accent transition-all duration-300">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Berita & Artikel</span>
+              <h3 class="text-2xl font-extrabold text-primary" id="dash-total-news">0</h3>
+            </div>
+            <div class="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent text-xl">
+              <i class="fas fa-newspaper"></i>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div onclick="switchTab('announcements')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex items-center justify-between cursor-pointer hover:shadow-md hover:border-accent transition-all duration-300">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pengumuman Aktif</span>
+              <h3 class="text-2xl font-extrabold text-primary" id="dash-total-announcements">0</h3>
+            </div>
+            <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-xl">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div onclick="switchTab('downloads')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex items-center justify-between cursor-pointer hover:shadow-md hover:border-accent transition-all duration-300">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Dokumen Unduhan</span>
+              <h3 class="text-2xl font-extrabold text-primary" id="dash-total-downloads">0</h3>
+            </div>
+            <div class="h-12 w-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl">
+              <i class="fas fa-file-download"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts and Activity log -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Simulated Visitor / Activity Chart -->
+          <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm lg:col-span-2 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-sm text-primary uppercase tracking-wider">Statistik Pengunjung Website SI (Minggu Ini)</h3>
+              <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Rata-rata: 450/hari</span>
+            </div>
+            
+            <!-- Dynamic SVG Graphic Chart -->
+            <div class="flex-1 min-h-[220px] flex items-end justify-between gap-4 pt-4 border-b border-gray-100 pb-2">
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 45%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">310</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Sen</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 60%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">420</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Sel</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 75%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">530</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Rab</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-accent/60 hover:bg-accent transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 85%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">610</span>
+                </div>
+                <span class="text-[10px] text-gray-800 font-bold mt-2">Kam</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 65%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">460</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Jum</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 35%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">240</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Sab</span>
+              </div>
+              <div class="flex flex-col items-center flex-1 h-full justify-end">
+                <div class="w-full bg-primary/20 hover:bg-primary transition-all duration-300 rounded-t-md cursor-pointer relative group" style="height: 30%;">
+                  <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-0.5 px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">190</span>
+                </div>
+                <span class="text-[10px] text-gray-400 mt-2">Ahd</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-center mt-3 text-xs text-gray-500">
+              <span>* Data diperbarui otomatis setiap pukul 23.59 WIB</span>
+              <a href="#" class="text-primary hover:text-accent font-semibold transition-colors flex items-center gap-1">Detail Analitik <i class="fas fa-chevron-right text-[10px]"></i></a>
+            </div>
+          </div>
+
+          <!-- Recent Log Actions -->
+          <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm flex flex-col">
+            <h3 class="font-bold text-sm text-primary uppercase tracking-wider mb-4 border-b border-gray-100 pb-3">Aktivitas Terakhir Admin</h3>
+            <div class="flex-1 space-y-4 overflow-y-auto max-h-[220px] custom-scrollbar pr-1" id="recent-activity-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Latest Event & Academic Quick Notes -->
+        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-4 border-b pb-3">
+            <h3 class="font-bold text-sm text-primary uppercase tracking-wider">Event Akademik Mendatang</h3>
+            <button onclick="switchTab('events')" class="text-xs text-primary hover:text-accent font-semibold flex items-center gap-1">Semua Event <i class="fas fa-chevron-right text-[9px]"></i></button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="dash-event-list">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==================== TAB: EVENTS ==================== -->
+      <div id="tab-events" class="tab-content hidden space-y-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm">
+          <!-- Table Toolbar Controls -->
+          <div class="p-5 border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <div class="relative flex-1 sm:w-64">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                <input type="text" id="event-search" oninput="filterEvents()" placeholder="Cari nama atau lokasi event..." class="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+              </div>
+              <select id="event-category-filter" onchange="filterEvents()" class="border border-gray-300 rounded-lg text-sm px-3 py-2 focus:outline-none focus:border-primary bg-white text-gray-700">
+                <option value="ALL">Semua Kategori</option>
+                <option value="Akademik">Akademik</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Kemahasiswaan">Kemahasiswaan</option>
+                <option value="Kerjasama">Kerjasama</option>
+              </select>
+            </div>
+            
+            <button onclick="openModal('event-modal')" class="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-all duration-200 w-full sm:w-auto justify-center">
+              <i class="fas fa-plus"></i>
+              <span>Tambah Event</span>
+            </button>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <th class="py-3.5 px-6">Nama Event</th>
+                  <th class="py-3.5 px-6">Tanggal & Waktu</th>
+                  <th class="py-3.5 px-6">Lokasi</th>
+                  <th class="py-3.5 px-6">Kategori</th>
+                  <th class="py-3.5 px-6">Status</th>
+                  <th class="py-3.5 px-6 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 text-sm text-gray-700 font-medium" id="event-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer -->
+          <div class="p-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center" id="event-table-footer">
+            <!-- Text rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==================== TAB: NEWS ==================== -->
+      <div id="tab-news" class="tab-content hidden space-y-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm">
+          <!-- Toolbar -->
+          <div class="p-5 border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="relative w-full sm:w-64">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              <input type="text" id="news-search" oninput="filterNews()" placeholder="Cari judul berita..." class="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+            </div>
+            
+            <button onclick="openModal('news-modal')" class="bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-all duration-200 w-full sm:w-auto justify-center">
+              <i class="fas fa-plus"></i>
+              <span>Tambah Berita Baru</span>
+            </button>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <th class="py-3.5 px-6">Judul Berita</th>
+                  <th class="py-3.5 px-6">Kategori</th>
+                  <th class="py-3.5 px-6">Tanggal Post</th>
+                  <th class="py-3.5 px-6">Status</th>
+                  <th class="py-3.5 px-6 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 text-sm text-gray-700 font-medium" id="news-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer -->
+          <div class="p-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center" id="news-table-footer">
+            <!-- Text rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==================== TAB: ANNOUNCEMENTS ==================== -->
+      <div id="tab-announcements" class="tab-content hidden space-y-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm">
+          <!-- Toolbar -->
+          <div class="p-5 border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="relative w-full sm:w-64">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              <input type="text" id="ann-search" oninput="filterAnnouncements()" placeholder="Cari judul pengumuman..." class="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+            </div>
+            
+            <button onclick="openModal('ann-modal')" class="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-all duration-200 w-full sm:w-auto justify-center">
+              <i class="fas fa-plus"></i>
+              <span>Tambah Pengumuman</span>
+            </button>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <th class="py-3.5 px-6">Pengumuman</th>
+                  <th class="py-3.5 px-6">Sasaran</th>
+                  <th class="py-3.5 px-6">Batas Waktu</th>
+                  <th class="py-3.5 px-6">Kategori Warna</th>
+                  <th class="py-3.5 px-6 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 text-sm text-gray-700 font-medium" id="ann-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer -->
+          <div class="p-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center" id="ann-table-footer">
+            <!-- Text rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==================== TAB: DOWNLOADS ==================== -->
+      <div id="tab-downloads" class="tab-content hidden space-y-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm">
+          <!-- Toolbar -->
+          <div class="p-5 border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="relative w-full sm:w-64">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              <input type="text" id="dl-search" oninput="filterDownloads()" placeholder="Cari nama dokumen..." class="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+            </div>
+            
+            <button onclick="openModal('dl-modal')" class="bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-all duration-200 w-full sm:w-auto justify-center">
+              <i class="fas fa-plus"></i>
+              <span>Tambah File</span>
+            </button>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <th class="py-3.5 px-6">Nama Dokumen</th>
+                  <th class="py-3.5 px-6">Kategori</th>
+                  <th class="py-3.5 px-6">Format</th>
+                  <th class="py-3.5 px-6">Ukuran</th>
+                  <th class="py-3.5 px-6 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 text-sm text-gray-700 font-medium" id="dl-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer -->
+          <div class="p-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center" id="dl-table-footer">
+            <!-- Text rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODALS MODALS MODALS (FOR CRUD FORMS)
+       ========================================== -->
+
+  <!-- 1. EVENT MODAL -->
+  <div id="event-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300">
+      <div class="bg-primary text-white p-5 flex items-center justify-between">
+        <h3 class="font-bold text-sm uppercase tracking-wider flex items-center gap-2" id="event-modal-title">Tambah Event Baru</h3>
+        <button onclick="closeModal('event-modal')" class="text-white hover:text-accent focus:outline-none"><i class="fas fa-times text-lg"></i></button>
+      </div>
+      <form id="event-form" onsubmit="saveEvent(event)" class="p-6 space-y-4">
+        <input type="hidden" id="event-id">
+        <div>
+          <label for="event-title" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Nama Event</label>
+          <input type="text" id="event-title" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="event-date" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tanggal</label>
+            <input type="date" id="event-date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label for="event-time" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Waktu</label>
+            <input type="text" id="event-time" required placeholder="Contoh: 09:00 WIB" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+        </div>
+        <div>
+          <label for="event-location" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tempat / Lokasi</label>
+          <input type="text" id="event-location" required placeholder="Contoh: Ruang Seminar Lantai 3 atau Zoom Meeting" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="event-category" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori</label>
+            <select id="event-category" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+              <option value="Akademik">Akademik</option>
+              <option value="Seminar">Seminar</option>
+              <option value="Kemahasiswaan">Kemahasiswaan</option>
+              <option value="Kerjasama">Kerjasama</option>
+            </select>
+          </div>
+          <div>
+            <label for="event-status" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Status</label>
+            <select id="event-status" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+              <option value="Mendatang">Mendatang</option>
+              <option value="Sedang Berlangsung">Sedang Berlangsung</option>
+              <option value="Selesai">Selesai</option>
+            </select>
+          </div>
+        </div>
+        <div class="pt-4 border-t flex justify-end gap-3">
+          <button type="button" onclick="closeModal('event-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold transition">Batal</button>
+          <button type="submit" class="bg-accent hover:bg-accent-dark text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm transition">Simpan Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. NEWS MODAL -->
+  <div id="news-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300">
+      <div class="bg-primary text-white p-5 flex items-center justify-between">
+        <h3 class="font-bold text-sm uppercase tracking-wider flex items-center gap-2" id="news-modal-title">Tambah Berita</h3>
+        <button onclick="closeModal('news-modal')" class="text-white hover:text-accent focus:outline-none"><i class="fas fa-times text-lg"></i></button>
+      </div>
+      <form id="news-form" onsubmit="saveNews(event)" class="p-6 space-y-4">
+        <input type="hidden" id="news-id">
+        <div>
+          <label for="news-title" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Judul Berita</label>
+          <input type="text" id="news-title" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="news-category" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori</label>
+            <input type="text" id="news-category" required placeholder="Contoh: Akreditasi, Seminar, Prestasi" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label for="news-date" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tanggal</label>
+            <input type="date" id="news-date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+        </div>
+        <div>
+          <label for="news-excerpt" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Ringkasan / Pengantar Singkat</label>
+          <textarea id="news-excerpt" required rows="3" placeholder="Tuliskan 2-3 kalimat ringkasan berita..." class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary resize-none"></textarea>
+        </div>
+        <div>
+          <label for="news-status" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Status Publikasi</label>
+          <select id="news-status" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+            <option value="Publish">Publish</option>
+            <option value="Draft">Draft</option>
+          </select>
+        </div>
+        <div class="pt-4 border-t flex justify-end gap-3">
+          <button type="button" onclick="closeModal('news-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold transition">Batal</button>
+          <button type="submit" class="bg-primary hover:bg-primary-light text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm transition">Simpan Berita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. ANNOUNCEMENT MODAL -->
+  <div id="ann-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300">
+      <div class="bg-primary text-white p-5 flex items-center justify-between">
+        <h3 class="font-bold text-sm uppercase tracking-wider flex items-center gap-2" id="ann-modal-title">Tambah Pengumuman</h3>
+        <button onclick="closeModal('ann-modal')" class="text-white hover:text-accent focus:outline-none"><i class="fas fa-times text-lg"></i></button>
+      </div>
+      <form id="ann-form" onsubmit="saveAnnouncement(event)" class="p-6 space-y-4">
+        <input type="hidden" id="ann-id">
+        <div>
+          <label for="ann-title" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Judul Pengumuman</label>
+          <input type="text" id="ann-title" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div>
+          <label for="ann-desc" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Isi Detail</label>
+          <textarea id="ann-desc" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary resize-none"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="ann-target" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Sasaran Target</label>
+            <input type="text" id="ann-target" required placeholder="Contoh: Mahasiswa, Dosen, Umum" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+          <div>
+            <label for="ann-expiry" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Batas Waktu Kegiatan</label>
+            <input type="text" id="ann-expiry" required placeholder="Contoh: 20 Juli 2025" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+          </div>
+        </div>
+        <div>
+          <label for="ann-color" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori Warna Badge (Visual)</label>
+          <select id="ann-color" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+            <option value="orange">Orange (Penting)</option>
+            <option value="blue">Biru (Akademik)</option>
+            <option value="green">Hijau (Kerjasama/Umum)</option>
+          </select>
+        </div>
+        <div class="pt-4 border-t flex justify-end gap-3">
+          <button type="button" onclick="closeModal('ann-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold transition">Batal</button>
+          <button type="submit" class="bg-accent hover:bg-accent-dark text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm transition">Simpan Pengumuman</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. DOWNLOAD MODAL -->
+  <div id="dl-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300">
+      <div class="bg-primary text-white p-5 flex items-center justify-between">
+        <h3 class="font-bold text-sm uppercase tracking-wider flex items-center gap-2" id="dl-modal-title">Tambah Berkas / Dokumen</h3>
+        <button onclick="closeModal('dl-modal')" class="text-white hover:text-accent focus:outline-none"><i class="fas fa-times text-lg"></i></button>
+      </div>
+      <form id="dl-form" onsubmit="saveDownload(event)" class="p-6 space-y-4">
+        <input type="hidden" id="dl-id">
+        <div>
+          <label for="dl-title" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Nama Dokumen</label>
+          <input type="text" id="dl-title" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2">
+            <label for="dl-category" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kategori</label>
+            <select id="dl-category" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+              <option value="Skripsi">Skripsi</option>
+              <option value="KP">KP (Kerja Praktek)</option>
+              <option value="Umum">Umum</option>
+              <option value="Panduan">Panduan</option>
+            </select>
+          </div>
+          <div>
+            <label for="dl-format" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Format File</label>
+            <select id="dl-format" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary bg-white text-gray-700">
+              <option value="DOCX">DOCX</option>
+              <option value="PDF">PDF</option>
+              <option value="XLSX">XLSX</option>
+              <option value="ZIP">ZIP</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="dl-size" class="block text-xs font-semibold text-gray-600 uppercase mb-1">Ukuran File (Estimasi)</label>
+          <input type="text" id="dl-size" required placeholder="Contoh: 120 KB atau 2.1 MB" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+        </div>
+        <div class="pt-4 border-t flex justify-end gap-3">
+          <button type="button" onclick="closeModal('dl-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold transition">Batal</button>
+          <button type="submit" class="bg-primary hover:bg-primary-light text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm transition">Simpan File</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       JAVASCRIPT FOR CRUD & TAB SWITCHING
+       ========================================== -->
+  <script>
+    // Toggle Mobile Sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+
+    // Modal Control Functions
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.firstElementChild.classList.remove('scale-95');
+        modal.firstElementChild.classList.add('scale-100');
+      }, 50);
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.firstElementChild.classList.remove('scale-100');
+      modal.firstElementChild.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        // Clear forms
+        if (modalId === 'event-modal') document.getElementById('event-form').reset();
+        if (modalId === 'news-modal') document.getElementById('news-form').reset();
+        if (modalId === 'ann-modal') document.getElementById('ann-form').reset();
+        if (modalId === 'dl-modal') document.getElementById('dl-form').reset();
+      }, 200);
+    }
+
+    // Active tab store
+    let currentTab = 'dashboard';
+
+    function switchTab(tabName) {
+      // Hide all contents
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+      // Remove active button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-accent', 'text-primary-dark', 'text-white');
+        btn.classList.add('text-gray-300');
+      });
+
+      // Show targeted tab
+      const targetContent = document.getElementById(`tab-${tabName}`);
+      if (targetContent) targetContent.classList.remove('hidden');
+
+      // Update button style
+      const targetBtn = document.getElementById(`btn-${tabName}`);
+      if (targetBtn) {
+        if (tabName === 'dashboard') {
+          targetBtn.classList.add('bg-primary-light', 'text-white');
+        } else {
+          targetBtn.classList.add('bg-accent', 'text-primary-dark');
+        }
+        targetBtn.classList.remove('text-gray-300');
+      }
+
+      // Update header text
+      const titles = {
+        'dashboard': 'Dashboard Overview',
+        'events': 'Kelola Event Kampus',
+        'news': 'Kelola Berita & Info SI',
+        'announcements': 'Kelola Pengumuman',
+        'downloads': 'Kelola File Akademis'
+      };
+      document.getElementById('current-tab-title').innerHTML = `<i class="${getTabIcon(tabName)} text-accent mr-1"></i> ${titles[tabName]}`;
+      currentTab = tabName;
+
+      // Close mobile sidebar on switch
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      if (!sidebar.classList.contains('-translate-x-full')) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function getTabIcon(tab) {
+      return {
+        'dashboard': 'fas fa-chart-pie',
+        'events': 'fas fa-calendar-alt',
+        'news': 'fas fa-newspaper',
+        'announcements': 'fas fa-bullhorn',
+        'downloads': 'fas fa-download'
+      }[tab];
+    }
+
+    // Database Mock Pre-populations
+    const defaultEvents = [
+      { id: 1, title: 'Workshop Penulisan Karya Ilmiah Dosen', date: '2025-07-10', time: '09:00 - 12:00 WIB', location: 'Lab Komputer 2 Gedung FTI', category: 'Akademik', status: 'Selesai' },
+      { id: 2, title: 'Kuliah Tamu: Transformasi Bisnis Digital', date: '2025-06-25', time: '13:00 - 15:30 WIB', location: 'Aula Utama Lantai 4', category: 'Seminar', status: 'Selesai' },
+      { id: 3, title: 'Sosialisasi PKM & Kompetisi Mahasiswa', date: '2025-07-28', time: '10:00 - 12:00 WIB', location: 'Zoom Meeting', category: 'Kemahasiswaan', status: 'Mendatang' },
+      { id: 4, title: 'Kunjungan Industri & MoU PT Gojek', date: '2025-06-18', time: '09:00 WIB', location: 'Kantor Gojek Jakarta', category: 'Kerjasama', status: 'Selesai' }
+    ];
+
+    const defaultNews = [
+      { id: 1, title: 'Prodi SI UNIBI Raih Akreditasi B dari BAN-PT', category: 'Akreditasi', date: '2025-06-12', status: 'Publish' },
+      { id: 2, title: 'Seminar Nasional SI 2025: AI di Era Industri 5.0', category: 'Seminar', date: '2025-05-28', status: 'Publish' },
+      { id: 3, title: 'Orientasi Mahasiswa Baru SI UNIBI Berjalan Lancar', category: 'Mahasiswa', date: '2025-05-15', status: 'Publish' },
+      { id: 4, title: 'Mahasiswa SI UNIBI Juara 1 Kompetisi Hackathon Nasional', category: 'Prestasi', date: '2025-05-03', status: 'Publish' }
+    ];
+
+    const defaultAnnouncements = [
+      { id: 1, title: 'Batas Akhir Pengisian KRS Semester Ganjil 2025/2026', desc: 'Seluruh mahasiswa diwajibkan untuk menyelesaikan pengisian KRS tepat waktu.', target: 'Mahasiswa', expiry: '20 Juli 2025', color: 'orange' },
+      { id: 2, title: 'Pelaksanaan Ujian Akhir Semester (UAS) Genap', desc: 'UAS Genap 2024/2025 dilaksanakan secara tatap muka di kelas.', target: 'Mahasiswa', expiry: '26 Juli 2025', color: 'blue' },
+      { id: 3, title: 'Penerimaan Proposal Hibah Penelitian Internal', desc: 'LPPM UNIBI membuka penerimaan proposal riset dosen.', target: 'Dosen', expiry: '05 Agustus 2025', color: 'green' }
+    ];
+
+    const defaultDownloads = [
+      { id: 1, title: 'Formulir Pengajuan Judul Skripsi', category: 'Skripsi', format: 'DOCX', size: '45 KB' },
+      { id: 2, title: 'Template Panduan Laporan Skripsi 2025', category: 'Skripsi', format: 'DOCX', size: '380 KB' },
+      { id: 3, title: 'Formulir Pendaftaran Kerja Praktek', category: 'KP', format: 'PDF', size: '120 KB' },
+      { id: 4, title: 'Buku Panduan Akademik 2025/2026', category: 'Panduan', format: 'PDF', size: '5.4 MB' }
+    ];
+
+    const defaultLogs = [
+      { action: 'Menambahkan event PKM Mahasiswa', time: 'Baru saja' },
+      { action: 'Mengubah pengumuman KRS Ganjil', time: '10 menit yang lalu' },
+      { action: 'Mengunggah file Buku Panduan 2025', time: '1 jam yang lalu' },
+      { action: 'Mempublikasikan berita Akreditasi B', time: 'Kemarin' }
+    ];
+
+    // Data Load Helper
+    function getDB(key, defaults) {
+      const data = localStorage.getItem(`si_${key}`);
+      if (!data) {
+        localStorage.setItem(`si_${key}`, JSON.stringify(defaults));
+        return defaults;
+      }
+      return JSON.parse(data);
+    }
+
+    function setDB(key, data) {
+      localStorage.setItem(`si_${key}`, JSON.stringify(data));
+      updateDashboardData();
+    }
+
+    // Add activity log entry
+    function logActivity(actionText) {
+      let logs = getDB('logs', defaultLogs);
+      logs.unshift({ action: actionText, time: 'Baru saja' });
+      if (logs.length > 8) logs.pop();
+      setDB('logs', logs);
+      renderLogs();
+    }
+
+    // Render Actions log
+    function renderLogs() {
+      const list = document.getElementById('recent-activity-list');
+      const logs = getDB('logs', defaultLogs);
+      list.innerHTML = logs.map(l => `
+        <div class="flex items-start gap-3 text-xs border-b border-gray-50 pb-2">
+          <div class="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5"><i class="fas fa-history text-[10px]"></i></div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-700">${l.action}</p>
+            <span class="text-[10px] text-gray-400 font-medium">${l.time}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Refresh Dashboard statistics counters
+    function updateDashboardData() {
+      const events = getDB('events', defaultEvents);
+      const news = getDB('news', defaultNews);
+      const anns = getDB('announcements', defaultAnnouncements);
+      const dls = getDB('downloads', defaultDownloads);
+
+      document.getElementById('dash-total-events').innerText = events.length;
+      document.getElementById('dash-total-news').innerText = news.length;
+      document.getElementById('dash-total-announcements').innerText = anns.length;
+      document.getElementById('dash-total-downloads').innerText = dls.length;
+
+      // Populate dashboard event table list
+      const dashList = document.getElementById('dash-event-list');
+      const upcoming = events.slice(0, 3);
+      
+      dashList.innerHTML = upcoming.map(e => `
+        <div class="bg-gray-50 border border-gray-100 rounded-lg p-4 space-y-2 hover:border-accent transition-all duration-300">
+          <span class="text-[10px] uppercase font-bold tracking-wide text-accent">${e.category}</span>
+          <h4 class="font-bold text-xs text-primary leading-snug line-clamp-1">${e.title}</h4>
+          <div class="flex flex-col gap-1 text-[11px] text-gray-500 font-medium">
+            <span><i class="far fa-calendar-alt text-accent mr-1"></i> ${formatDate(e.date)}</span>
+            <span><i class="far fa-clock text-accent mr-1"></i> ${e.time}</span>
+            <span class="truncate"><i class="fas fa-map-marker-alt text-accent mr-1.5"></i> ${e.location}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Format Date string to readable Indonesian text
+    function formatDate(dateStr) {
+      if(!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // CRUD: EVENTS
+    function renderEvents(data) {
+      const list = data || getDB('events', defaultEvents);
+      const tbody = document.getElementById('event-table-body');
+      
+      tbody.innerHTML = list.map(e => `
+        <tr class="hover:bg-gray-50 border-b border-gray-100 transition-colors">
+          <td class="py-3.5 px-6 font-bold text-primary">${e.title}</td>
+          <td class="py-3.5 px-6 font-semibold text-gray-500 text-xs">${formatDate(e.date)}<br/><span class="text-[10px] text-gray-400 font-medium">${e.time}</span></td>
+          <td class="py-3.5 px-6 text-gray-600 text-xs font-semibold">${e.location}</td>
+          <td class="py-3.5 px-6"><span class="bg-primary/10 text-primary px-2.5 py-1 rounded-full text-[10px] font-bold uppercase">${e.category}</span></td>
+          <td class="py-3.5 px-6">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
+              e.status === 'Selesai' ? 'bg-gray-100 text-gray-600' :
+              e.status === 'Sedang Berlangsung' ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'
+            }">${e.status}</span>
+          </td>
+          <td class="py-3.5 px-6 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="editEvent(${e.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit"><i class="fas fa-edit"></i></button>
+              <button onclick="deleteEvent(${e.id})" class="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors" title="Hapus"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('event-table-footer').innerText = `Menampilkan ${list.length} event`;
+    }
+
+    function saveEvent(e) {
+      e.preventDefault();
+      const id = document.getElementById('event-id').value;
+      const title = document.getElementById('event-title').value;
+      const date = document.getElementById('event-date').value;
+      const time = document.getElementById('event-time').value;
+      const location = document.getElementById('event-location').value;
+      const category = document.getElementById('event-category').value;
+      const status = document.getElementById('event-status').value;
+
+      let events = getDB('events', defaultEvents);
+
+      if (id) {
+        // Update edit mode
+        events = events.map(x => x.id == id ? { id: parseInt(id), title, date, time, location, category, status } : x);
+        logActivity(`Mengubah event "${title}"`);
+      } else {
+        // Add new mode
+        const newId = events.length > 0 ? Math.max(...events.map(x => x.id)) + 1 : 1;
+        events.push({ id: newId, title, date, time, location, category, status });
+        logActivity(`Menambahkan event baru "${title}"`);
+      }
+
+      setDB('events', events);
+      renderEvents();
+      closeModal('event-modal');
+    }
+
+    function editEvent(id) {
+      const events = getDB('events', defaultEvents);
+      const item = events.find(x => x.id == id);
+      if (item) {
+        document.getElementById('event-id').value = item.id;
+        document.getElementById('event-title').value = item.title;
+        document.getElementById('event-date').value = item.date;
+        document.getElementById('event-time').value = item.time;
+        document.getElementById('event-location').value = item.location;
+        document.getElementById('event-category').value = item.category;
+        document.getElementById('event-status').value = item.status;
+
+        document.getElementById('event-modal-title').innerText = 'Edit Detail Event';
+        openModal('event-modal');
+      }
+    }
+
+    function deleteEvent(id) {
+      if (confirm('Apakah Anda yakin ingin menghapus event ini?')) {
+        let events = getDB('events', defaultEvents);
+        const item = events.find(x => x.id == id);
+        events = events.filter(x => x.id != id);
+        setDB('events', events);
+        if (item) logActivity(`Menghapus event "${item.title}"`);
+        renderEvents();
+      }
+    }
+
+    function filterEvents() {
+      const q = document.getElementById('event-search').value.toLowerCase();
+      const cat = document.getElementById('event-category-filter').value;
+      let events = getDB('events', defaultEvents);
+
+      if (cat !== 'ALL') {
+        events = events.filter(x => x.category === cat);
+      }
+      if (q) {
+        events = events.filter(x => x.title.toLowerCase().includes(q) || x.location.toLowerCase().includes(q));
+      }
+      renderEvents(events);
+    }
+
+
+    // CRUD: NEWS
+    function renderNews(data) {
+      const list = data || getDB('news', defaultNews);
+      const tbody = document.getElementById('news-table-body');
+      
+      tbody.innerHTML = list.map(n => `
+        <tr class="hover:bg-gray-50 border-b border-gray-100 transition-colors">
+          <td class="py-3.5 px-6 font-bold text-primary">${n.title}</td>
+          <td class="py-3.5 px-6"><span class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold uppercase border">${n.category}</span></td>
+          <td class="py-3.5 px-6 font-semibold text-gray-500 text-xs">${formatDate(n.date)}</td>
+          <td class="py-3.5 px-6">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
+              n.status === 'Publish' ? 'bg-green-50 text-green-600' : 'bg-yellow-50 text-yellow-600'
+            }">${n.status}</span>
+          </td>
+          <td class="py-3.5 px-6 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="editNews(${n.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit"><i class="fas fa-edit"></i></button>
+              <button onclick="deleteNews(${n.id})" class="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors" title="Hapus"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('news-table-footer').innerText = `Menampilkan ${list.length} berita`;
+    }
+
+    function saveNews(e) {
+      e.preventDefault();
+      const id = document.getElementById('news-id').value;
+      const title = document.getElementById('news-title').value;
+      const category = document.getElementById('news-category').value;
+      const date = document.getElementById('news-date').value;
+      const status = document.getElementById('news-status').value;
+
+      let news = getDB('news', defaultNews);
+
+      if (id) {
+        news = news.map(x => x.id == id ? { id: parseInt(id), title, category, date, status } : x);
+        logActivity(`Mengubah berita "${title}"`);
+      } else {
+        const newId = news.length > 0 ? Math.max(...news.map(x => x.id)) + 1 : 1;
+        news.push({ id: newId, title, category, date, status });
+        logActivity(`Menulis berita baru "${title}"`);
+      }
+
+      setDB('news', news);
+      renderNews();
+      closeModal('news-modal');
+    }
+
+    function editNews(id) {
+      const news = getDB('news', defaultNews);
+      const item = news.find(x => x.id == id);
+      if (item) {
+        document.getElementById('news-id').value = item.id;
+        document.getElementById('news-title').value = item.title;
+        document.getElementById('news-category').value = item.category;
+        document.getElementById('news-date').value = item.date;
+        document.getElementById('news-status').value = item.status;
+
+        document.getElementById('news-modal-title').innerText = 'Edit Berita';
+        openModal('news-modal');
+      }
+    }
+
+    function deleteNews(id) {
+      if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+        let news = getDB('news', defaultNews);
+        const item = news.find(x => x.id == id);
+        news = news.filter(x => x.id != id);
+        setDB('news', news);
+        if (item) logActivity(`Menghapus berita "${item.title}"`);
+        renderNews();
+      }
+    }
+
+    function filterNews() {
+      const q = document.getElementById('news-search').value.toLowerCase();
+      let news = getDB('news', defaultNews);
+      if (q) {
+        news = news.filter(x => x.title.toLowerCase().includes(q) || x.category.toLowerCase().includes(q));
+      }
+      renderNews(news);
+    }
+
+
+    // CRUD: ANNOUNCEMENTS
+    function renderAnnouncements(data) {
+      const list = data || getDB('announcements', defaultAnnouncements);
+      const tbody = document.getElementById('ann-table-body');
+      
+      tbody.innerHTML = list.map(a => `
+        <tr class="hover:bg-gray-50 border-b border-gray-100 transition-colors">
+          <td class="py-3.5 px-6"><div class="font-bold text-primary text-sm">${a.title}</div><div class="text-xs text-gray-500 font-medium leading-relaxed">${a.desc}</div></td>
+          <td class="py-3.5 px-6 font-semibold text-gray-600 text-xs">${a.target}</td>
+          <td class="py-3.5 px-6 font-semibold text-accent text-xs">${a.expiry}</td>
+          <td class="py-3.5 px-6"><span class="capitalize text-xs font-bold text-${a.color === 'orange' ? 'orange-600' : a.color === 'blue' ? 'blue-600' : 'green-600'}">${a.color}</span></td>
+          <td class="py-3.5 px-6 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="editAnnouncement(${a.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit"><i class="fas fa-edit"></i></button>
+              <button onclick="deleteAnnouncement(${a.id})" class="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors" title="Hapus"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('ann-table-footer').innerText = `Menampilkan ${list.length} pengumuman`;
+    }
+
+    function saveAnnouncement(e) {
+      e.preventDefault();
+      const id = document.getElementById('ann-id').value;
+      const title = document.getElementById('ann-title').value;
+      const desc = document.getElementById('ann-desc').value;
+      const target = document.getElementById('ann-target').value;
+      const expiry = document.getElementById('ann-expiry').value;
+      const color = document.getElementById('ann-color').value;
+
+      let anns = getDB('announcements', defaultAnnouncements);
+
+      if (id) {
+        anns = anns.map(x => x.id == id ? { id: parseInt(id), title, desc, target, expiry, color } : x);
+        logActivity(`Mengubah pengumuman "${title}"`);
+      } else {
+        const newId = anns.length > 0 ? Math.max(...anns.map(x => x.id)) + 1 : 1;
+        anns.push({ id: newId, title, desc, target, expiry, color });
+        logActivity(`Membuat pengumuman baru "${title}"`);
+      }
+
+      setDB('announcements', anns);
+      renderAnnouncements();
+      closeModal('ann-modal');
+    }
+
+    function editAnnouncement(id) {
+      const anns = getDB('announcements', defaultAnnouncements);
+      const item = anns.find(x => x.id == id);
+      if (item) {
+        document.getElementById('ann-id').value = item.id;
+        document.getElementById('ann-title').value = item.title;
+        document.getElementById('ann-desc').value = item.desc;
+        document.getElementById('ann-target').value = item.target;
+        document.getElementById('ann-expiry').value = item.expiry;
+        document.getElementById('ann-color').value = item.color;
+
+        document.getElementById('ann-modal-title').innerText = 'Edit Pengumuman';
+        openModal('ann-modal');
+      }
+    }
+
+    function deleteAnnouncement(id) {
+      if (confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')) {
+        let anns = getDB('announcements', defaultAnnouncements);
+        const item = anns.find(x => x.id == id);
+        anns = anns.filter(x => x.id != id);
+        setDB('announcements', anns);
+        if (item) logActivity(`Menghapus pengumuman "${item.title}"`);
+        renderAnnouncements();
+      }
+    }
+
+    function filterAnnouncements() {
+      const q = document.getElementById('ann-search').value.toLowerCase();
+      let anns = getDB('announcements', defaultAnnouncements);
+      if (q) {
+        anns = anns.filter(x => x.title.toLowerCase().includes(q) || x.desc.toLowerCase().includes(q));
+      }
+      renderAnnouncements(anns);
+    }
+
+
+    // CRUD: DOWNLOADS
+    function renderDownloads(data) {
+      const list = data || getDB('downloads', defaultDownloads);
+      const tbody = document.getElementById('dl-table-body');
+      
+      tbody.innerHTML = list.map(d => `
+        <tr class="hover:bg-gray-50 border-b border-gray-100 transition-colors">
+          <td class="py-3.5 px-6 font-bold text-primary">${d.title}</td>
+          <td class="py-3.5 px-6"><span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase border">${d.category}</span></td>
+          <td class="py-3.5 px-6 font-bold text-xs text-red-600">${d.format}</td>
+          <td class="py-3.5 px-6 font-semibold text-gray-500 text-xs">${d.size}</td>
+          <td class="py-3.5 px-6 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <button onclick="editDownload(${d.id})" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit"><i class="fas fa-edit"></i></button>
+              <button onclick="deleteDownload(${d.id})" class="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors" title="Hapus"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      document.getElementById('dl-table-footer').innerText = `Menampilkan ${list.length} dokumen`;
+    }
+
+    function saveDownload(e) {
+      e.preventDefault();
+      const id = document.getElementById('dl-id').value;
+      const title = document.getElementById('dl-title').value;
+      const category = document.getElementById('dl-category').value;
+      const format = document.getElementById('dl-format').value;
+      const size = document.getElementById('dl-size').value;
+
+      let dls = getDB('downloads', defaultDownloads);
+
+      if (id) {
+        dls = dls.map(x => x.id == id ? { id: parseInt(id), title, category, format, size } : x);
+        logActivity(`Mengubah berkas "${title}"`);
+      } else {
+        const newId = dls.length > 0 ? Math.max(...dls.map(x => x.id)) + 1 : 1;
+        dls.push({ id: newId, title, category, format, size });
+        logActivity(`Mengunggah berkas baru "${title}"`);
+      }
+
+      setDB('downloads', dls);
+      renderDownloads();
+      closeModal('dl-modal');
+    }
+
+    function editDownload(id) {
+      const dls = getDB('downloads', defaultDownloads);
+      const item = dls.find(x => x.id == id);
+      if (item) {
+        document.getElementById('dl-id').value = item.id;
+        document.getElementById('dl-title').value = item.title;
+        document.getElementById('dl-category').value = item.category;
+        document.getElementById('dl-format').value = item.format;
+        document.getElementById('dl-size').value = item.size;
+
+        document.getElementById('dl-modal-title').innerText = 'Edit Berkas';
+        openModal('dl-modal');
+      }
+    }
+
+    function deleteDownload(id) {
+      if (confirm('Apakah Anda yakin ingin menghapus berkas ini?')) {
+        let dls = getDB('downloads', defaultDownloads);
+        const item = dls.find(x => x.id == id);
+        dls = dls.filter(x => x.id != id);
+        setDB('downloads', dls);
+        if (item) logActivity(`Menghapus berkas "${item.title}"`);
+        renderDownloads();
+      }
+    }
+
+    function filterDownloads() {
+      const q = document.getElementById('dl-search').value.toLowerCase();
+      let dls = getDB('downloads', defaultDownloads);
+      if (q) {
+        dls = dls.filter(x => x.title.toLowerCase().includes(q) || x.category.toLowerCase().includes(q));
+      }
+      renderDownloads(dls);
+    }
+
+
+    // INIT PAGE FUNCTION
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set Date Today in Header
+      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      const now = new Date();
+      document.getElementById('current-date-time').innerText = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+      // Initialize DB values
+      updateDashboardData();
+      renderLogs();
+      renderEvents();
+      renderNews();
+      renderAnnouncements();
+      renderDownloads();
+
+      // Switch to Default Tab
+      switchTab('dashboard');
+    });
+  </script>
+</body>
+</html>

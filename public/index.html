@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Program Studi Sistem Informasi UNIBI — Universitas Informatika dan Bisnis Indonesia. Informasi akademik, penelitian, kemahasiswaan dan profil prodi SI." />
+  <title>Beranda | Program Studi Sistem Informasi – FTI UNIBI</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="assets/css/app.css" />
+
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            primary: '#192f59',
+            'primary-dark': '#0e1e3d',
+            'primary-light': '#2a4a8a',
+            accent: '#fda136',
+          },
+          fontFamily: { sans: ['Poppins','sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<div class="top-bar">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+      <div style="display:flex; align-items:center; gap:1.2rem;">
+        <span><i class="fas fa-envelope" style="margin-right:4px; color:#fda136;"></i>prodi.si@unibi.ac.id</span>
+        <span><i class="fas fa-phone" style="margin-right:4px; color:#fda136;"></i>(022) 7320808</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="pmb-btn" style="margin-left:0.5rem;">PMB UNIBI</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" id="mainNavbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:0.5rem 0;">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+        <img src="images/logo.png" alt="Logo UNIBI" style="height:56px; width:auto;" />
+        <div class="brand-text">
+          <div class="brand-main">Prodi Sistem Informasi</div>
+          <div class="brand-sub">Universitas Informatika dan Bisnis Indonesia</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link-item active">Beranda</a>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="tentang.html" class="nav-link-item">Tentang Prodi <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="tentang.html#profil">Profil Program Studi</a></li>
+            <li><a href="tentang.html#visi-misi">Visi & Misi</a></li>
+            <li><a href="tentang.html#kaprodi">Pimpinan Prodi</a></li>
+            <li><a href="tentang.html#dosen">Dosen & Staff</a></li>
+            <li><a href="tentang.html#fasilitas">Fasilitas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="akademik.html" class="nav-link-item">Akademik <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="akademik.html#kurikulum">Kurikulum</a></li>
+            <li><a href="akademik.html#mata-kuliah">Mata Kuliah</a></li>
+            <li><a href="akademik.html#jadwal">Jadwal Kuliah</a></li>
+            <li><a href="akademik.html#kalender">Kalender Akademik</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="penelitian.html" class="nav-link-item">Penelitian <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="penelitian.html#penelitian">Penelitian Dosen</a></li>
+            <li><a href="penelitian.html#pengabdian">Pengabdian Masyarakat</a></li>
+            <li><a href="penelitian.html#jurnal">Jurnal & Publikasi</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="berita.html" class="nav-link-item">Berita & Kegiatan <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="berita.html#berita">Berita Terkini</a></li>
+            <li><a href="berita.html#kegiatan">Kegiatan Prodi</a></li>
+            <li><a href="berita.html#pengumuman">Pengumuman</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="kemahasiswaan.html" class="nav-link-item">Kemahasiswaan <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="kemahasiswaan.html#organisasi">Organisasi Mahasiswa</a></li>
+            <li><a href="kemahasiswaan.html#prestasi">Prestasi</a></li>
+            <li><a href="kemahasiswaan.html#alumni">Alumni</a></li>
+            <li><a href="kemahasiswaan.html#beasiswa">Beasiswa</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" style="position:relative;">
+          <a href="panduan.html" class="nav-link-item">Panduan <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:3px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="panduan.html#skripsi">Panduan Skripsi</a></li>
+            <li><a href="panduan.html#kp">Kerja Praktek</a></li>
+            <li><a href="panduan.html#download">Download</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Beranda</a>
+      <a href="tentang.html" class="mobile-sub">› Profil Program Studi</a>
+      <a href="tentang.html#visi-misi" class="mobile-sub">› Visi & Misi</a>
+      <a href="tentang.html#dosen" class="mobile-sub">› Dosen & Staff</a>
+      <a href="akademik.html">Akademik</a>
+      <a href="akademik.html#kurikulum" class="mobile-sub">› Kurikulum</a>
+      <a href="akademik.html#mata-kuliah" class="mobile-sub">› Mata Kuliah</a>
+      <a href="penelitian.html">Penelitian</a>
+      <a href="berita.html">Berita & Kegiatan</a>
+      <a href="kemahasiswaan.html">Kemahasiswaan</a>
+      <a href="panduan.html">Panduan</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO SLIDER ===================== -->
+<div class="hero-slider" id="heroSlider">
+
+  <!-- Slide 1 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('images/hero1.png');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content container">
+      <span class="slide-tag">Program Studi Terakreditasi B</span>
+      <h1 class="slide-title">Selamat Datang di<br />Prodi Sistem Informasi<br /><span style="color:#fda136;">FTI UNIBI</span></h1>
+      <p class="slide-sub">Mencetak lulusan yang kompeten, inovatif, dan siap menghadapi tantangan era digital dalam bidang Sistem Informasi.</p>
+      <a href="tentang.html" class="btn-primary">Tentang Prodi</a>
+      <a href="akademik.html" class="btn-outline">Lihat Kurikulum</a>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('images/hero2.png');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content container">
+      <span class="slide-tag">Riset & Inovasi</span>
+      <h1 class="slide-title">Laboratorium Modern<br />untuk Riset &<br /><span style="color:#fda136;">Pengembangan Digital</span></h1>
+      <p class="slide-sub">Didukung fasilitas laboratorium komputer lengkap dan internet berkecepatan tinggi untuk mendukung kegiatan akademik dan penelitian mahasiswa.</p>
+      <a href="penelitian.html" class="btn-primary">Lihat Penelitian</a>
+      <a href="panduan.html" class="btn-outline">Unduh Panduan</a>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('images/hero3.png');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content container">
+      <span class="slide-tag">Wisuda & Karir</span>
+      <h1 class="slide-title">Raih Prestasi &<br />Wujudkan Impian<br /><span style="color:#fda136;">Karir Terbaik Anda</span></h1>
+      <p class="slide-sub">Alumni Sistem Informasi UNIBI telah berkarir di berbagai perusahaan nasional dan multinasional, instansi pemerintah, dan wirausaha digital.</p>
+      <a href="kemahasiswaan.html#alumni" class="btn-primary">Lihat Alumni</a>
+      <a href="kemahasiswaan.html#prestasi" class="btn-outline">Prestasi Mahasiswa</a>
+    </div>
+  </div>
+
+  <!-- Arrows -->
+  <button class="slider-arrow slider-prev" id="sliderPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <button class="slider-arrow slider-next" id="sliderNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+
+  <!-- Dots -->
+  <div class="slider-controls">
+    <button class="slider-dot" aria-label="Slide 1"></button>
+    <button class="slider-dot" aria-label="Slide 2"></button>
+    <button class="slider-dot" aria-label="Slide 3"></button>
+  </div>
+</div>
+
+<!-- ===================== STATS BAR ===================== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-num" data-count="1200" data-suffix="+">0</span>
+        <span class="stat-label">Mahasiswa Aktif</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="18" data-suffix="">0</span>
+        <span class="stat-label">Dosen Berpengalaman</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="850" data-suffix="+">0</span>
+        <span class="stat-label">Alumni Berkarir</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-count="15" data-suffix="">0</span>
+        <span class="stat-label">Mitra Perusahaan</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABOUT SECTION ===================== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Left: Image -->
+      <div class="reveal">
+        <div class="about-img-wrap" style="padding-bottom: 2rem; padding-right: 2rem;">
+          <img src="images/kampus.png" alt="Kampus UNIBI" />
+          <div class="about-badge">
+            <div class="badge-num">Akred.</div>
+            <div class="badge-text" style="font-size:1rem; font-weight:800;">B</div>
+            <div class="badge-text">BAN-PT</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="reveal">
+        <span class="section-tag">Tentang Prodi</span>
+        <div class="section-divider section-divider-left"></div>
+        <h2 class="section-title" style="text-align:left;">Program Studi Sistem Informasi<br />FTI Universitas Informatika & Bisnis Indonesia</h2>
+        <p style="color:#555; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">
+          Program Studi Sistem Informasi (SI) merupakan salah satu program studi yang berada di bawah naungan 
+          Fakultas Teknologi Informasi (FTI) Universitas Informatika dan Bisnis Indonesia (UNIBI). Program studi ini 
+          berdiri sejak tahun 2005 dan telah terakreditasi B oleh BAN-PT.
+        </p>
+        <p style="color:#555; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">
+          Prodi SI UNIBI menghasilkan lulusan yang mampu merancang, mengembangkan, dan mengelola sistem informasi 
+          berbasis teknologi yang mendukung proses bisnis organisasi secara efektif dan efisien.
+        </p>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <div style="font-size:0.88rem; font-weight:700; color:#192f59; margin-bottom:0.2rem;">Pendidikan Berkualitas</div>
+            <div style="font-size:0.8rem; color:#666; line-height:1.6;">Kurikulum yang selaras dengan kebutuhan industri dan perkembangan teknologi informasi terkini.</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+          <div>
+            <div style="font-size:0.88rem; font-weight:700; color:#192f59; margin-bottom:0.2rem;">Kerjasama Industri</div>
+            <div style="font-size:0.8rem; color:#666; line-height:1.6;">Bermitra dengan perusahaan-perusahaan terkemuka untuk program magang, rekrutmen, dan riset bersama.</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-flask"></i></div>
+          <div>
+            <div style="font-size:0.88rem; font-weight:700; color:#192f59; margin-bottom:0.2rem;">Penelitian & Inovasi</div>
+            <div style="font-size:0.8rem; color:#666; line-height:1.6;">Aktif dalam kegiatan penelitian dan pengabdian masyarakat yang berdampak nyata bagi lingkungan sekitar.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <a href="tentang.html" class="btn-primary">Profil Selengkapnya</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISI MISI ===================== -->
+<section class="section section-light" id="visi-misi">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Visi & Misi</span>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Arah dan Tujuan Program Studi</h2>
+    </div>
+
+    <div class="grid-2 reveal">
+
+      <!-- Visi -->
+      <div class="visi-card">
+        <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem;">
+          <div style="width:44px; height:44px; background:#192f59; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.1rem;">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3 style="margin:0; font-size:1rem; font-weight:700; color:#192f59;">Visi Program Studi</h3>
+        </div>
+        <p>
+          Menjadi program studi yang unggul, inovatif, dan berdaya saing tinggi dalam bidang Sistem Informasi di tingkat 
+          nasional pada tahun 2030, dengan mengintegrasikan ilmu pengetahuan teknologi dan nilai-nilai etika profesional 
+          untuk menghasilkan lulusan yang mampu berkontribusi dalam era digitalisasi.
+        </p>
+      </div>
+
+      <!-- Misi -->
+      <div class="visi-card">
+        <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem;">
+          <div style="width:44px; height:44px; background:#fda136; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.1rem;">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3 style="margin:0; font-size:1rem; font-weight:700; color:#192f59;">Misi Program Studi</h3>
+        </div>
+        <div class="misi-item"><i class="fas fa-check-circle"></i><span>Menyelenggarakan pendidikan tinggi Sistem Informasi yang berkualitas dan relevan dengan kebutuhan industri.</span></div>
+        <div class="misi-item"><i class="fas fa-check-circle"></i><span>Mengembangkan penelitian dan inovasi di bidang sistem informasi yang bermanfaat bagi masyarakat.</span></div>
+        <div class="misi-item"><i class="fas fa-check-circle"></i><span>Menjalin kerjasama dengan industri, pemerintah, dan institusi pendidikan lainnya.</span></div>
+        <div class="misi-item"><i class="fas fa-check-circle"></i><span>Membentuk lulusan yang berintegritas, berjiwa entrepreneur, dan adaptif terhadap perubahan teknologi.</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWS SECTION ===================== -->
+<section class="section" id="berita">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem;" class="reveal">
+      <div>
+        <span class="section-tag">Informasi Terkini</span>
+        <div class="section-divider section-divider-left"></div>
+        <h2 class="section-title" style="margin-bottom:0; text-align:left;">Berita & Info SI</h2>
+      </div>
+      <a href="berita.html" class="btn-accent-outline" style="flex-shrink:0;">Lihat Semua <i class="fas fa-arrow-right" style="margin-left:5px;"></i></a>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2rem;">
+
+      <!-- Main News Grid -->
+      <div>
+        <div class="news-grid reveal">
+
+          <!-- News Card 1 -->
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/berita1.png" alt="Akreditasi BAN-PT" />
+              <span class="news-card-cat">Akreditasi</span>
+            </div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-date"><i class="far fa-calendar-alt"></i> 12 Juni 2025</span>
+                <span class="tag-badge">Pengumuman</span>
+              </div>
+              <h3 class="news-card-title"><a href="berita.html">Prodi SI UNIBI Raih Akreditasi B dari BAN-PT, Terus Tingkatkan Kualitas Pendidikan</a></h3>
+              <p class="news-card-excerpt">Program Studi Sistem Informasi FTI UNIBI kembali meraih akreditasi B dari Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT). Pencapaian ini merupakan bukti komitmen prodi dalam meningkatkan mutu pendidikan.</p>
+              <a href="berita.html" class="news-read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- News Card 2 -->
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/berita2.png" alt="Seminar Nasional" />
+              <span class="news-card-cat">Kegiatan</span>
+            </div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-date"><i class="far fa-calendar-alt"></i> 28 Mei 2025</span>
+                <span class="tag-badge tag-badge-accent">Seminar</span>
+              </div>
+              <h3 class="news-card-title"><a href="berita.html">Seminar Nasional Sistem Informasi 2025: "AI dan Transformasi Digital di Era Industri 5.0"</a></h3>
+              <p class="news-card-excerpt">Prodi SI UNIBI sukses menggelar Seminar Nasional dengan menghadirkan narasumber dari berbagai perguruan tinggi ternama dan praktisi industri teknologi informasi nasional.</p>
+              <a href="berita.html" class="news-read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- News Card 3 (use placeholder gradient) -->
+          <div class="news-card">
+            <div class="news-card-img" style="background:linear-gradient(135deg,#192f59,#2a4a8a); display:flex; align-items:center; justify-content:center;">
+              <i class="fas fa-users" style="font-size:4rem; color:rgba(255,255,255,0.3);"></i>
+              <span class="news-card-cat">Mahasiswa</span>
+            </div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-date"><i class="far fa-calendar-alt"></i> 15 Mei 2025</span>
+                <span class="tag-badge">Kegiatan</span>
+              </div>
+              <h3 class="news-card-title"><a href="berita.html">Orientasi Mahasiswa Baru Sistem Informasi UNIBI Tahun Akademik 2025/2026 Berjalan Sukses</a></h3>
+              <p class="news-card-excerpt">Kegiatan ORDIK (Orientasi Disiplin dan Kepribadian) Mahasiswa Baru Prodi SI UNIBI dilaksanakan selama tiga hari dan diikuti oleh 250 mahasiswa baru angkatan 2025.</p>
+              <a href="berita.html" class="news-read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- News Card 4 -->
+          <div class="news-card">
+            <div class="news-card-img" style="background:linear-gradient(135deg,#fda136,#e88c20); display:flex; align-items:center; justify-content:center;">
+              <i class="fas fa-trophy" style="font-size:4rem; color:rgba(255,255,255,0.35);"></i>
+              <span class="news-card-cat">Prestasi</span>
+            </div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-date"><i class="far fa-calendar-alt"></i> 3 Mei 2025</span>
+                <span class="tag-badge tag-badge-accent">Prestasi</span>
+              </div>
+              <h3 class="news-card-title"><a href="berita.html">Mahasiswa SI UNIBI Juara 1 Kompetisi Hackathon Nasional di Jakarta</a></h3>
+              <p class="news-card-excerpt">Tim mahasiswa Prodi SI UNIBI berhasil meraih Juara 1 dalam kompetisi Hackathon Nasional yang diselenggarakan oleh Kementerian Kominfo RI dengan solusi aplikasi berbasis AI.</p>
+              <a href="berita.html" class="news-read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="reveal">
+
+        <!-- Kegiatan Prodi Widget -->
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">Kegiatan Prodi</div>
+          
+          <div class="sidebar-news-item">
+            <div style="width:60px; height:60px; background:linear-gradient(135deg,#192f59,#2a4a8a); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fas fa-book-open" style="color:rgba(255,255,255,0.7); font-size:1.2rem;"></i>
+            </div>
+            <div>
+              <div class="sidebar-news-title"><a href="berita.html">Workshop Penulisan Karya Ilmiah bagi Dosen Prodi SI UNIBI</a></div>
+              <div class="sidebar-news-date"><i class="far fa-clock" style="color:#fda136; margin-right:3px;"></i>10 Juli 2025</div>
+            </div>
+          </div>
+
+          <div class="sidebar-news-item">
+            <div style="width:60px; height:60px; background:linear-gradient(135deg,#fda136,#e88c20); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fas fa-chalkboard-teacher" style="color:rgba(255,255,255,0.8); font-size:1.2rem;"></i>
+            </div>
+            <div>
+              <div class="sidebar-news-title"><a href="berita.html">Kuliah Tamu: Digital Transformation Strategy dengan Praktisi dari Telkom</a></div>
+              <div class="sidebar-news-date"><i class="far fa-clock" style="color:#fda136; margin-right:3px;"></i>25 Juni 2025</div>
+            </div>
+          </div>
+
+          <div class="sidebar-news-item">
+            <div style="width:60px; height:60px; background:linear-gradient(135deg,#28a745,#1d7a31); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fas fa-handshake" style="color:rgba(255,255,255,0.8); font-size:1.2rem;"></i>
+            </div>
+            <div>
+              <div class="sidebar-news-title"><a href="berita.html">Penandatanganan MoU antara Prodi SI UNIBI dan PT Gojek Indonesia</a></div>
+              <div class="sidebar-news-date"><i class="far fa-clock" style="color:#fda136; margin-right:3px;"></i>18 Juni 2025</div>
+            </div>
+          </div>
+
+          <div class="sidebar-news-item">
+            <div style="width:60px; height:60px; background:linear-gradient(135deg,#6f42c1,#4a2a8a); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fas fa-medal" style="color:rgba(255,255,255,0.8); font-size:1.2rem;"></i>
+            </div>
+            <div>
+              <div class="sidebar-news-title"><a href="berita.html">Pengumuman Penerimaan Mahasiswa Baru Program Studi SI UNIBI</a></div>
+              <div class="sidebar-news-date"><i class="far fa-clock" style="color:#fda136; margin-right:3px;"></i>5 Juni 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links Widget -->
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">Tautan Cepat</div>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="margin-bottom:0.4rem;"><a href="akademik.html" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Jadwal Kuliah</a></li>
+            <li style="margin-bottom:0.4rem;"><a href="panduan.html#skripsi" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Panduan Skripsi</a></li>
+            <li style="margin-bottom:0.4rem;"><a href="panduan.html#kp" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Panduan Kerja Praktek</a></li>
+            <li style="margin-bottom:0.4rem;"><a href="kemahasiswaan.html#beasiswa" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Informasi Beasiswa</a></li>
+            <li style="margin-bottom:0.4rem;"><a href="penelitian.html" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Jurnal & Penelitian</a></li>
+            <li><a href="#" style="font-size:0.8rem; color:#555; text-decoration:none; display:flex; align-items:center; gap:6px; transition:all 0.2s; padding:0.3rem 0;"><i class="fas fa-chevron-right" style="color:#fda136; font-size:0.7rem;"></i>Portal Akademik UNIBI</a></li>
+          </ul>
+        </div>
+
+        <!-- Pengumuman Widget -->
+        <div class="sidebar-widget" style="background:#192f59; border:none;">
+          <div style="font-size:0.88rem; font-weight:700; color:white; padding-bottom:0.7rem; border-bottom:2px solid #fda136; margin-bottom:1rem; display:inline-block;">Pengumuman</div>
+          <div style="font-size:0.78rem; color:rgba(255,255,255,0.75); display:flex; flex-direction:column; gap:0.7rem;">
+            <div style="padding:0.6rem; background:rgba(255,255,255,0.07); border-radius:4px; border-left:3px solid #fda136;">
+              <div style="font-weight:600; color:white; margin-bottom:0.2rem;">Batas Akhir KRS</div>
+              <div>Pengisian KRS Semester Ganjil 2025/2026 berakhir tanggal 20 Juli 2025.</div>
+            </div>
+            <div style="padding:0.6rem; background:rgba(255,255,255,0.07); border-radius:4px; border-left:3px solid #fda136;">
+              <div style="font-weight:600; color:white; margin-bottom:0.2rem;">Ujian Akhir Semester</div>
+              <div>UAS Semester Genap 2024/2025 dilaksanakan 14 – 26 Juli 2025.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOSEN SECTION ===================== -->
+<section class="section section-light" id="dosen">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Sumber Daya Manusia</span>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Pimpinan & Tenaga Pendidik</h2>
+      <p class="section-desc">Didukung oleh dosen-dosen berpengalaman dan berdedikasi dalam bidang Sistem Informasi dan Teknologi Informasi.</p>
+    </div>
+
+    <div class="dosen-grid reveal">
+
+      <!-- Dosen 1 (Kaprodi) -->
+      <div class="dosen-card">
+        <div class="dosen-img-wrap">
+          <img src="images/dosen1.png" alt="Dr. H. Eko Budi Santoso" />
+          <div class="dosen-overlay"></div>
+          <div class="dosen-socials">
+            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          </div>
+        </div>
+        <div class="dosen-info">
+          <div style="display:inline-block; background:#192f59; color:white; font-size:0.65rem; font-weight:700; padding:0.15rem 0.6rem; border-radius:2px; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em;">Ketua Program Studi</div>
+          <div class="dosen-name">Dr. H. Eko Budi Santoso, M.Kom.</div>
+          <div class="dosen-role">Dosen Tetap Prodi SI</div>
+          <div class="dosen-nidn">NIDN: 0412057801</div>
+        </div>
+      </div>
+
+      <!-- Dosen 2 -->
+      <div class="dosen-card">
+        <div class="dosen-img-wrap">
+          <img src="images/dosen2.png" alt="Reza Fahlevi, M.Cs." />
+          <div class="dosen-overlay"></div>
+          <div class="dosen-socials">
+            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          </div>
+        </div>
+        <div class="dosen-info">
+          <div style="display:inline-block; background:#fda136; color:white; font-size:0.65rem; font-weight:700; padding:0.15rem 0.6rem; border-radius:2px; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em;">Sekretaris Prodi</div>
+          <div class="dosen-name">Reza Fahlevi, M.Cs.</div>
+          <div class="dosen-role">Dosen Tetap Prodi SI</div>
+          <div class="dosen-nidn">NIDN: 0427068802</div>
+        </div>
+      </div>
+
+      <!-- Dosen 3 -->
+      <div class="dosen-card">
+        <div class="dosen-img-wrap">
+          <img src="images/dosen3.png" alt="Yusuf Hermawan, M.T." />
+          <div class="dosen-overlay"></div>
+          <div class="dosen-socials">
+            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          </div>
+        </div>
+        <div class="dosen-info">
+          <div style="display:inline-block; background:#2a4a8a; color:white; font-size:0.65rem; font-weight:700; padding:0.15rem 0.6rem; border-radius:2px; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em;">Koordinator Lab</div>
+          <div class="dosen-name">Yusuf Hermawan, M.T.</div>
+          <div class="dosen-role">Dosen Tetap Prodi SI</div>
+          <div class="dosen-nidn">NIDN: 0308079001</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+      <a href="tentang.html#dosen" class="btn-primary-dark">Lihat Semua Dosen &amp; Staff</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARTNER / MITRA ===================== -->
+<section class="section" id="mitra">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Mitra & Kerjasama</span>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Mitra Industri & Institusi</h2>
+      <p class="section-desc">Prodi SI UNIBI menjalin kerjasama strategis dengan berbagai perusahaan dan lembaga untuk mendukung pengembangan kurikulum dan peluang karir mahasiswa.</p>
+    </div>
+
+    <div class="reveal" style="display:grid; grid-template-columns: repeat(5, 1fr); gap:1.5rem;">
+      <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px solid #e0e0e0; border-radius:6px; transition:all 0.3s; cursor:default;" onmouseover="this.style.borderColor='#fda136'; this.style.boxShadow='0 4px 15px rgba(253,161,54,0.15)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+        <div style="text-align:center;"><div style="width:50px;height:50px;background:linear-gradient(135deg,#e8292a,#c0392b);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;"><i class="fas fa-globe" style="color:white;font-size:1.2rem;"></i></div><div style="font-size:0.75rem;font-weight:700;color:#333;">Telkom<br/>Indonesia</div></div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px solid #e0e0e0; border-radius:6px; transition:all 0.3s; cursor:default;" onmouseover="this.style.borderColor='#fda136'; this.style.boxShadow='0 4px 15px rgba(253,161,54,0.15)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+        <div style="text-align:center;"><div style="width:50px;height:50px;background:linear-gradient(135deg,#00acee,#0086b8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;"><i class="fas fa-car" style="color:white;font-size:1.2rem;"></i></div><div style="font-size:0.75rem;font-weight:700;color:#333;">Gojek<br/>Indonesia</div></div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px solid #e0e0e0; border-radius:6px; transition:all 0.3s; cursor:default;" onmouseover="this.style.borderColor='#fda136'; this.style.boxShadow='0 4px 15px rgba(253,161,54,0.15)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+        <div style="text-align:center;"><div style="width:50px;height:50px;background:linear-gradient(135deg,#192f59,#2a4a8a);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;"><i class="fas fa-landmark" style="color:white;font-size:1.2rem;"></i></div><div style="font-size:0.75rem;font-weight:700;color:#333;">Bank<br/>Indonesia</div></div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px solid #e0e0e0; border-radius:6px; transition:all 0.3s; cursor:default;" onmouseover="this.style.borderColor='#fda136'; this.style.boxShadow='0 4px 15px rgba(253,161,54,0.15)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+        <div style="text-align:center;"><div style="width:50px;height:50px;background:linear-gradient(135deg,#fd7e14,#e55c00);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;"><i class="fas fa-shopping-bag" style="color:white;font-size:1.2rem;"></i></div><div style="font-size:0.75rem;font-weight:700;color:#333;">Tokopedia<br/>&nbsp;</div></div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px solid #e0e0e0; border-radius:6px; transition:all 0.3s; cursor:default;" onmouseover="this.style.borderColor='#fda136'; this.style.boxShadow='0 4px 15px rgba(253,161,54,0.15)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+        <div style="text-align:center;"><div style="width:50px;height:50px;background:linear-gradient(135deg,#28a745,#1d7a31);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;"><i class="fas fa-building" style="color:white;font-size:1.2rem;"></i></div><div style="font-size:0.75rem;font-weight:700;color:#333;">Kemkominfo<br/>RI</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section testimonial-section" id="testimoni">
+  <div class="testimonial-bg" style="background-color:#192f59; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 12px);"></div>
+  <div class="testimonial-overlay" style="background:rgba(25,47,89,0.92);"></div>
+
+  <div class="container" style="position:relative; z-index:2;">
+    <div class="section-header reveal">
+      <span class="section-tag" style="color:#fda136;">Testimoni Alumni</span>
+      <div class="section-divider"></div>
+      <h2 class="section-title section-title-white">Apa Kata Alumni Kami</h2>
+    </div>
+
+    <div style="max-width:760px; margin:0 auto;" class="reveal">
+      <div class="testimonial-slider">
+
+        <div class="testimonial-slide">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Kuliah di Prodi SI UNIBI adalah keputusan terbaik yang pernah saya buat. Kurikulum yang up-to-date, dosen yang berpengalaman, dan lingkungan kampus yang kondusif membuat saya siap menghadapi dunia kerja. Saya kini bekerja sebagai IT Analyst di salah satu bank BUMN terkemuka di Indonesia.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AR</div>
+            <div>
+              <div class="testimonial-name">Andi Rahmat, S.Kom.</div>
+              <div class="testimonial-role">Alumni 2022 — IT Analyst, BRI</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Prodi SI UNIBI memberikan bekal ilmu yang sangat komprehensif. Mulai dari pemrograman, analisis sistem, manajemen database, hingga keamanan informasi. Dengan ilmu yang saya dapatkan, saya berhasil mendirikan startup teknologi dan mendapat pendanaan Series A.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:#fda136;">SP</div>
+            <div>
+              <div class="testimonial-name">Sari Puspita, S.Kom.</div>
+              <div class="testimonial-role">Alumni 2021 — Co-Founder, TechNusa.id</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Pengalaman penelitian dan publikasi ilmiah di Prodi SI UNIBI membantu saya melanjutkan studi S2 dengan beasiswa penuh di luar negeri. Para dosen sangat supportif dan membimbing dengan tulus. Terima kasih Prodi SI UNIBI!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:#28a745;">MB</div>
+            <div>
+              <div class="testimonial-name">Muhammad Bilal, S.Kom.</div>
+              <div class="testimonial-role">Alumni 2020 — Graduate Student, TU Delft, Belanda</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="testimonial-dots">
+        <button class="testimonial-dot" aria-label="Testimonial 1"></button>
+        <button class="testimonial-dot" aria-label="Testimonial 2"></button>
+        <button class="testimonial-dot" aria-label="Testimonial 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BANNER ===================== -->
+<section style="background: linear-gradient(135deg, #fda136 0%, #e88c20 100%); padding:3.5rem 0;">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;" class="reveal">
+      <div>
+        <h2 style="font-size:1.6rem; font-weight:800; color:white; margin-bottom:0.5rem;">Bergabunglah dengan Keluarga Besar Prodi SI UNIBI</h2>
+        <p style="color:rgba(255,255,255,0.88); font-size:0.9rem;">Daftarkan diri Anda sekarang dan raih masa depan cerah bersama kami.</p>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#" style="display:inline-block; background:white; color:#fda136; padding:0.8rem 2rem; border-radius:4px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.25s; box-shadow:0 4px 15px rgba(0,0,0,0.15);" onmouseover="this.style.background='#192f59'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#fda136';">Daftar PMB Sekarang</a>
+        <a href="tentang.html" style="display:inline-block; background:transparent; color:white; padding:0.8rem 2rem; border-radius:4px; font-weight:700; font-size:0.88rem; text-decoration:none; border:2px solid rgba(255,255,255,0.8); transition:all 0.25s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';" onmouseout="this.style.background='transparent';">Pelajari Lebih Lanjut</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer-main">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand Column -->
+      <div>
+        <img src="images/logo.png" alt="Logo UNIBI" style="height:60px; width:auto; margin-bottom:0.8rem;" />
+        <div class="footer-brand-name">Program Studi Sistem Informasi</div>
+        <div class="footer-brand-sub">Fakultas Teknologi Informasi – UNIBI</div>
+        <p class="footer-desc">Mencetak lulusan Sistem Informasi yang kompeten, inovatif, dan siap bersaing di era digital. Berdiri sejak 2005, terakreditasi BAN-PT.</p>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Jl. Soekarno Hatta No.643, Bandung, Jawa Barat 40285</span></div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span>(022) 7320808</span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>prodi.si@unibi.ac.id</span></div>
+        <div class="footer-social">
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Navigasi -->
+      <div>
+        <div class="footer-heading">Navigasi</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="tentang.html">Tentang Prodi</a></li>
+          <li><a href="akademik.html">Akademik</a></li>
+          <li><a href="penelitian.html">Penelitian</a></li>
+          <li><a href="berita.html">Berita & Kegiatan</a></li>
+          <li><a href="kemahasiswaan.html">Kemahasiswaan</a></li>
+          <li><a href="panduan.html">Panduan</a></li>
+          <li><a href="admin.html" style="color:var(--accent); font-weight:bold;"><i class="fas fa-user-shield" style="margin-right:4px;"></i>Panel Admin</a></li>
+        </ul>
+      </div>
+
+      <!-- Layanan Akademik -->
+      <div>
+        <div class="footer-heading">Akademik</div>
+        <ul class="footer-links">
+          <li><a href="akademik.html#kurikulum">Kurikulum Prodi</a></li>
+          <li><a href="akademik.html#mata-kuliah">Daftar Mata Kuliah</a></li>
+          <li><a href="akademik.html#jadwal">Jadwal Kuliah</a></li>
+          <li><a href="panduan.html#skripsi">Panduan Skripsi</a></li>
+          <li><a href="panduan.html#kp">Kerja Praktek</a></li>
+          <li><a href="panduan.html#download">Download</a></li>
+        </ul>
+      </div>
+
+      <!-- Tautan Institusi -->
+      <div>
+        <div class="footer-heading">Tautan Institusi</div>
+        <ul class="footer-links">
+          <li><a href="#">Website UNIBI</a></li>
+          <li><a href="#">Portal Akademik SIAKAD</a></li>
+          <li><a href="#">E-Learning UNIBI</a></li>
+          <li><a href="#">Perpustakaan Digital</a></li>
+          <li><a href="#">PMB UNIBI</a></li>
+          <li><a href="#">BAN-PT</a></li>
+        </ul>
+        <!-- Map widget -->
+        <div style="margin-top:1.2rem; border-radius:6px; overflow:hidden; border:2px solid rgba(255,255,255,0.08);">
+          <iframe src="https://maps.google.com/maps?q=Jl.+Soekarno+Hatta+No.643,+Bandung&output=embed" width="100%" height="120" style="border:0; display:block;" loading="lazy" title="Lokasi UNIBI"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="container">
+    <p>© 2025 Program Studi Sistem Informasi – Fakultas Teknologi Informasi UNIBI. All Rights Reserved.</p>
+    <p style="margin-top:0.3rem;">Dikembangkan dengan <span style="color:#fda136;">♥</span> menggunakan Laravel &amp; Tailwind CSS</p>
+  </div>
+</div>
+
+<!-- Scroll Top -->
+<button id="scrollTop" aria-label="Scroll ke atas"><i class="fas fa-chevron-up"></i></button>
+
+<!-- App JS -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>
