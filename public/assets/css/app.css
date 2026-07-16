@@ -1,5 +1,5 @@
-/* ==========================================================
-   SI FTI UNIBI — app.css
+﻿/* ==========================================================
+   SI FTI UNIBI â€” app.css
    Custom styles extending Tailwind CSS
    ========================================================== */
 
@@ -7,11 +7,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary:  #192f59;
-  --primary-dark: #0e1e3d;
-  --primary-light: #2a4a8a;
-  --accent:   #fda136;
-  --accent-dark: #e88c20;
+  --primary:  #1d465a;
+  --primary-dark: #112b38;
+  --primary-light: #2c6b8a;
+  --accent:   #00a89d;
+  --accent-dark: #e12b30;
   --light:    #f7f7f7;
   --text:     #333333;
   --text-muted: #666666;
@@ -618,7 +618,7 @@ body {
 .footer-links { list-style: none; padding: 0; margin: 0; }
 .footer-links li { margin-bottom: 0.4rem; }
 .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 5px; }
-.footer-links a::before { content: '›'; color: var(--accent); font-size: 1rem; line-height: 1; }
+.footer-links a::before { content: 'â€º'; color: var(--accent); font-size: 1rem; line-height: 1; }
 .footer-links a:hover { color: var(--accent); padding-left: 4px; }
 
 .footer-social { display: flex; gap: 8px; margin-top: 1rem; }
@@ -771,3 +771,4 @@ body {
   .hamburger { display: flex; }
   .mobile-nav { display: block; }
 }
+
